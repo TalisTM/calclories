@@ -44,7 +44,7 @@ class ResultPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        "Seu consumo diário de calorias é de:",
+                        "Seu gasto diário de calorias é de:",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 30,
@@ -59,7 +59,9 @@ class ResultPage extends StatelessWidget {
                             builder: (context) {
                               return Text.rich(
                                 TextSpan(
-                                  text: resultStore.kcal.toStringAsFixed(0),
+                                  text: resultStore.kcal > 0
+                                    ? resultStore.kcal.toStringAsFixed(0)
+                                    : "0",
                                   style: TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,

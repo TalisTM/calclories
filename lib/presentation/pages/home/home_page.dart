@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
   HomePage({ Key? key }) : super(key: key);
 
   final MaskTextInputFormatter _ageMask = MaskTextInputFormatter(mask: "###");
-  final MaskTextInputFormatter _weightMask = MaskTextInputFormatter(mask: "##.##");
   final MaskTextInputFormatter _heightMask = MaskTextInputFormatter(mask: "#.##");
 
   @override
@@ -120,10 +119,10 @@ class HomePage extends StatelessWidget {
               builder: (context) {
                 return TextFieldWidget(
                   padding: const EdgeInsets.only(top: 20),
+                  maxLength: 7,
                   label: "Peso (KG)",
                   hintText: "Ex. 75.5",
                   errorText: homeStore.weightError,
-                  formatters: [_weightMask],
                   controller: homeStore.weightController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) {
@@ -177,17 +176,22 @@ class HomePage extends StatelessWidget {
               homeStore.ageError = "Idade Inválida";
               homeStore.valido = false;
             }
+            try {
+              double.parse(homeStore.weightController.text);
+            } catch (e) {
+              homeStore.weightError = "Peso Inválido, use \".\" para separar";
+              homeStore.valido = false;
+            }
             if(homeStore.weightController.text.isEmpty) {
               homeStore.weightError = "Peso Inválido";
               homeStore.valido = false;
-            } 
+            }
             if(homeStore.heightController.text.isEmpty) {
               homeStore.heightError = "Altura Inválida";
               homeStore.valido = false;
             } 
 
             if(homeStore.valido) {
-              
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ActivityPage()));
             }
           }

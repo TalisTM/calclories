@@ -40,6 +40,7 @@ class TextFieldWidget extends StatelessWidget {
         inputFormatters: formatters,
         onChanged: onChanged,
         decoration: InputDecoration(
+          counterText: "",
           hintText: hintText,
           errorText: errorText,
           label: Text(label),
