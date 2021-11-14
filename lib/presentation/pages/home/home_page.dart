@@ -223,6 +223,7 @@ class HomePage extends StatelessWidget {
             }
 
             if(homeStore.valido) {
+              FocusScope.of(context).unfocus();
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ActivityPage()));
             }
           }
