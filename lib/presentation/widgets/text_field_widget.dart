@@ -13,11 +13,15 @@ class TextFieldWidget extends StatelessWidget {
   final Function(String)? onChanged;
   final int? maxLength;
   final String? hintText;
+  final FocusNode? focusNode;
+  final Function(String)? onFieldSubmitted;
 
   const TextFieldWidget({
     Key? key,
     required this.label,
     required this.controller,
+    this.onFieldSubmitted,
+    this.focusNode,
     this.hintText,
     this.maxLength,
     this.formatters,
@@ -39,6 +43,8 @@ class TextFieldWidget extends StatelessWidget {
         keyboardType: keyboardType,
         inputFormatters: formatters,
         onChanged: onChanged,
+        focusNode: focusNode,
+        onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           counterText: "",
           hintText: hintText,

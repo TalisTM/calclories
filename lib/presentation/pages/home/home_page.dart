@@ -14,6 +14,10 @@ class HomePage extends StatelessWidget {
   final MaskTextInputFormatter _ageMask = MaskTextInputFormatter(mask: "###");
   final MaskTextInputFormatter _heightMask = MaskTextInputFormatter(mask: "#.##");
 
+  final FocusNode ageFocus = FocusNode();
+  final FocusNode weightFocus = FocusNode();
+  final FocusNode heightFocus = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -106,11 +110,15 @@ class HomePage extends StatelessWidget {
                   label: "Idade (Anos)",
                   hintText: "Ex. 30",
                   errorText: homeStore.ageError,
+                  focusNode: ageFocus,
                   formatters: [_ageMask],
                   controller: homeStore.ageController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) {
                     homeStore.ageError = null;
+                  },
+                  onFieldSubmitted: (_) {
+                    FocusScope.of(context).requestFocus(weightFocus);
                   },
                 );
               }
@@ -123,10 +131,14 @@ class HomePage extends StatelessWidget {
                   label: "Peso (KG)",
                   hintText: "Ex. 75.5",
                   errorText: homeStore.weightError,
+                  focusNode: weightFocus,
                   controller: homeStore.weightController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) {
                     homeStore.weightError = null;
+                  },
+                  onFieldSubmitted: (_) {
+                    FocusScope.of(context).requestFocus(heightFocus);
                   },
                 );
               }
@@ -138,11 +150,15 @@ class HomePage extends StatelessWidget {
                   hintText: "Ex. 1.70",
                   label: "Altura (Metros)",
                   errorText: homeStore.heightError,
+                  focusNode: heightFocus,
                   formatters: [_heightMask],
                   controller: homeStore.heightController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) {
                     homeStore.heightError = null;
+                  },
+                  onFieldSubmitted: (_) {
+                    FocusScope.of(context).unfocus();
                   },
                 );
               }
@@ -172,24 +188,39 @@ class HomePage extends StatelessWidget {
             );
           } else {
             homeStore.valido = true;
-            if(homeStore.ageController.text.isEmpty) {
+
+            try {
+              int aux = int.parse(homeStore.ageController.text);
+              if(aux <= 0 || aux > 130) {
+                homeStore.ageError = "Idade Inválida";
+                homeStore.valido = false;
+              }
+            } catch (e) {
               homeStore.ageError = "Idade Inválida";
               homeStore.valido = false;
             }
+
             try {
-              double.parse(homeStore.weightController.text);
+              double aux = double.parse(homeStore.weightController.text);
+              if(aux <= 0 || aux > 200) {
+                homeStore.weightError = "Peso Inválido";
+                homeStore.valido = false;
+              }
             } catch (e) {
               homeStore.weightError = "Peso Inválido, use \".\" para separar";
               homeStore.valido = false;
             }
-            if(homeStore.weightController.text.isEmpty) {
-              homeStore.weightError = "Peso Inválido";
-              homeStore.valido = false;
-            }
-            if(homeStore.heightController.text.isEmpty) {
+
+            try {
+              double aux = double.parse(homeStore.heightController.text);
+              if(aux <= 0 || aux >= 3) {
+                homeStore.heightError = "Altura Inválida";
+                homeStore.valido = false;
+              }
+            } catch (e) {
               homeStore.heightError = "Altura Inválida";
               homeStore.valido = false;
-            } 
+            }
 
             if(homeStore.valido) {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ActivityPage()));
