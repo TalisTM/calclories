@@ -95,7 +95,7 @@ class ActivityPage extends StatelessWidget {
         label: const Text(
           "Resultado"
         ),
-        icon: const Icon(Icons.arrow_forward),
+        icon: const Icon(Icons.playlist_add_check_outlined),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () async {
           if(activityStore.activity == "") {
