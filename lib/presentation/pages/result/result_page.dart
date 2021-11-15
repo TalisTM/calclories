@@ -12,6 +12,7 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: const AppBarWidget(label: "CalcLories", back: true),
       body: FutureBuilder(
       future: Future.delayed(const Duration(seconds: 1)),

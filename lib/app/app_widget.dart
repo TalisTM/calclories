@@ -11,6 +11,7 @@ class AppWidget extends StatelessWidget {
       title: "CalcLories",
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const SplashPage(),
 
     );

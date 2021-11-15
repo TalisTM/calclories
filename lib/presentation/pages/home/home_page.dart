@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: const AppBarWidget(label: "CalcLories"),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
@@ -30,17 +31,12 @@ class HomePage extends StatelessWidget {
             Text(
               "Descubra seu gasto calórico",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                color: Theme.of(context).primaryColor
-              ),
+              style: Theme.of(context).textTheme.headline1
             ),
             const SizedBox(height: 10),
-            const Text(
+            Text(
               "Preencha os dados abaixo:",
-              style: TextStyle(
-                fontSize: 24,
-              ),
+              style: Theme.of(context).textTheme.headline2
             ),
             const SizedBox(height: 10),
             Stack(
@@ -91,13 +87,10 @@ class HomePage extends StatelessWidget {
                   top: 0,
                   left: 20,
                   child: Container(
-                    color: Colors.white,
+                    color: Theme.of(context).backgroundColor,
                     child: Text(
                       "Sexo:",
-                      style: TextStyle(
-                       fontSize: 18,
-                       color: Colors.grey[700]
-                      )
+                      style: Theme.of(context).textTheme.bodyText1
                     ),
                   ),
                 ),
@@ -171,7 +164,7 @@ class HomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none
         ),
-        child: const Icon(Icons.arrow_forward),
+        child: const Icon(Icons.arrow_forward, size: 30),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () async {
           if(homeStore.sex == "") {

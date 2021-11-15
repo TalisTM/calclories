@@ -29,6 +29,7 @@ class DialogWidget extends StatelessWidget {
       content: subtitle != null 
         ? Text(
           subtitle!,
+          style: Theme.of(context).textTheme.subtitle1,
         )
         : null,
       actions: [

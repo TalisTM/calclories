@@ -16,8 +16,11 @@ class RadioWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RadioListTile(
-      title: Text(value),
-      subtitle: subTitle != null ? Text(subTitle!) : null,
+      title: Text(
+        value,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
+      subtitle: subTitle != null ? Text(subTitle!, style: Theme.of(context).textTheme.bodyText2) : null,
       value: value,
       groupValue:groupValue,
       onChanged: onChanged,

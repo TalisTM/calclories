@@ -45,6 +45,7 @@ class TextFieldWidget extends StatelessWidget {
         onChanged: onChanged,
         focusNode: focusNode,
         onFieldSubmitted: onFieldSubmitted,
+        style: Theme.of(context).textTheme.bodyText1,
         decoration: InputDecoration(
           counterText: "",
           hintText: hintText,
@@ -65,9 +66,8 @@ class TextFieldWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Colors.red)
           ),
-          labelStyle: TextStyle(
-            color: Colors.grey[700]
-          )
+          labelStyle: Theme.of(context).textTheme.bodyText1,
+          hintStyle: Theme.of(context).textTheme.bodyText2,
         )
       ),
     );

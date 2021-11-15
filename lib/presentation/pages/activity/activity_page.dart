@@ -12,17 +12,16 @@ class ActivityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: const AppBarWidget(label: "CalcLories", back: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
+            Text(
               "Informe sua atividade:",
-              style: TextStyle(
-                fontSize: 24,
-              ),
+              style: Theme.of(context).textTheme.headline2
             ),
             const SizedBox(height: 10),
             Observer(
@@ -41,7 +40,7 @@ class ActivityPage extends StatelessWidget {
               builder: (context) {
                 return RadioWidget(
                   value: "Levemente ativo",
-                  subTitle: "exercícios de 1 a 3 dias na semana",
+                  subTitle: "Exercícios de 1 a 3 dias na semana",
                   groupValue: activityStore.activity,
                   onChanged: (val) {
                     activityStore.activity = val!;
@@ -53,7 +52,7 @@ class ActivityPage extends StatelessWidget {
               builder: (context) {
                 return RadioWidget(
                   value: "Ativo",
-                  subTitle: "exercícios de 3 a 5 dias na semana",
+                  subTitle: "Exercícios de 3 a 5 dias na semana",
                   groupValue: activityStore.activity,
                   onChanged: (val) {
                     activityStore.activity = val!;
@@ -65,7 +64,7 @@ class ActivityPage extends StatelessWidget {
               builder: (context) {
                 return RadioWidget(
                   value: "Muito ativo",
-                  subTitle: "exercícios de 6 a 7 dias na semana",
+                  subTitle: "Exercícios de 6 a 7 dias na semana",
                   groupValue: activityStore.activity,
                   onChanged: (val) {
                     activityStore.activity = val!;
@@ -76,7 +75,7 @@ class ActivityPage extends StatelessWidget {
             Observer(
               builder: (context) {
                 return RadioWidget(
-                  value: "atletas",
+                  value: "Atletas",
                   groupValue: activityStore.activity,
                   onChanged: (val) {
                     activityStore.activity = val!;
@@ -92,10 +91,8 @@ class ActivityPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none
         ),
-        label: const Text(
-          "Resultado"
-        ),
-        icon: const Icon(Icons.playlist_add_check_outlined),
+        label: const Text("Resultado", style: TextStyle(fontSize: 18)),
+        icon: const Icon(Icons.playlist_add_check_outlined, size: 30),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () async {
           if(activityStore.activity == "") {

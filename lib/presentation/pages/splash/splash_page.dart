@@ -20,9 +20,12 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/splash.png',
-      fit: BoxFit.cover,
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: Image.asset(
+        'assets/images/splash.png',
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

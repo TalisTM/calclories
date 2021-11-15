@@ -21,7 +21,7 @@ class ButtonWidget extends StatelessWidget {
       textColor = Theme.of(context).primaryColor;
       backgroundColor = Colors.white;
     } else {
-      textColor = Colors.white;
+      textColor = Theme.of(context).backgroundColor;
       backgroundColor = Theme.of(context).primaryColor;
     }
 
